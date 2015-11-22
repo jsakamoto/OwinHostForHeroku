@@ -24,11 +24,11 @@
     <tags>OWIN Heroku</tags>
   </metadata>
   <files>
-    <!--<file src="bin\Release\OwinHostForHeroku.exe" target="driver"/>-->
-    <!--
-    <file src="README-IEDriver.txt" target="content"/>
+    <file src="bin\Release\Microsoft.Owin.dll" target="tools"/>
+    <file src="bin\Release\Microsoft.Owin.Host.HttpListener.dll" target="tools"/>
+    <file src="bin\Release\Microsoft.Owin.Hosting.dll" target="tools"/>
+    <file src="bin\Release\Owin.dll" target="tools"/>
     <file src="Install.ps1" target="tools"/>
     <file src="Uninstall.ps1" target="tools"/>
-    -->
   </files>
 </package>
