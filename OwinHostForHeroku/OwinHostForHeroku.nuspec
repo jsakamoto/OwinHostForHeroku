@@ -30,7 +30,7 @@
     <file src="bin\Release\Owin.dll" target="tools"/>
     <file src="NuGet Package Source\tools\Install.ps1" target="tools"/>
     <file src="NuGet Package Source\tools\Uninstall.ps1" target="tools"/>
+    <file src="NuGet Package Source\tools\Procfile" target="tools\Procfile"/>
     <file src="NuGet Package Source\build\OwinHostForHeroku.targets" target="build"/>
-    <file src="NuGet Package Source\content\Procfile" target="content\Procfile"/>
   </files>
 </package>

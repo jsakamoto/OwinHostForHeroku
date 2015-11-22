@@ -1,4 +1,31 @@
 ﻿param($installPath, $toolsPath, $package, $project)
+$solutionDir = [System.IO.Path]::Combine($installPath, "..\..\")
+$solutionDir = [System.IO.Path]::GetFullPath($solutionDir)
+
+# Uninstall "Procfile".
+$sourceProcfilePath = Join-Path $toolsPath "Procfile"
+$destinationProcfilePath = Join-Path $solutionDir "Procfile"
+if ((Test-Path -PathType Leaf $destinationProcfilePath) -eq $true) {
+	$sourceProcfileContent = cat $sourceProcfilePath
+	$destinationProcfileContent = cat $destinationProcfilePath
+	if ($sourceProcfileContent -ceq $destinationProcfileContent) {
+
+		$solution = Get-Interface $dte.Solution ([EnvDTE80.Solution2])
+		$solutionFolder = $solution.Projects | where { $_.Name -eq "Solution Items"}
+		if ($solutionFolder -ne $null) {
+			$projItemProcfile = $solutionFolder.ProjectItems | where { $_.Name -eq "Procfile" }
+			if ($projItemProcfile -ne $null) {
+				$projItemProcfile.Delete()
+				del $destinationProcfilePath
+			}
+			if ($solutionFolder.ProjectItems.Count -eq 0) {
+				$dte.Solution.Remove($solutionFolder)
+			}
+		}
+	}
+}
+
+# Uninstall custom Web server provider.
 $serverProvider = $dte.GetObject("CustomWebServerProvider")
 if ($serverProvider -eq $null)
 {

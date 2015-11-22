@@ -2,9 +2,7 @@
   <Target Name="CopyOwinHostForHerokuToBin" BeforeTargets="AfterBuild">
     <PropertyGroup>
       <OwinHostForHerokuPath>$(MSBuildThisFileDirectory)..\tools\OwinHostForHeroku.exe</OwinHostForHerokuPath>
-      <ProcFilePath>$(ProjectDir)Procfile</ProcFilePath>
     </PropertyGroup>
     <Copy SourceFiles="$(OwinHostForHerokuPath)" DestinationFolder="$(ProjectDir)$(OutputPath)" SkipUnchangedFiles="true"></Copy>
-    <Copy Condition="Exists('$(ProcfilePath)')" SourceFiles="$(ProcfilePath)" DestinationFolder="$(ProjectDir)$(OutputPath)" SkipUnchangedFiles="true"></Copy>
   </Target>
 </Project>

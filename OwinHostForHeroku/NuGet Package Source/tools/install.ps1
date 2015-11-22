@@ -1,4 +1,26 @@
 ﻿param($installPath, $toolsPath, $package, $project)
+$solutionDir = [System.IO.Path]::Combine($installPath, "..\..\")
+$solutionDir = [System.IO.Path]::GetFullPath($solutionDir)
+
+# Install "Procfile".
+$sourceProcfilePath = Join-Path $toolsPath "Procfile"
+$destinationProcfilePath = Join-Path $solutionDir "Procfile"
+if ((Test-Path -PathType Leaf $destinationProcfilePath) -eq $false) {
+	copy $sourceProcfilePath $destinationProcfilePath
+
+	$solution = Get-Interface $dte.Solution ([EnvDTE80.Solution2])
+	$solutionFolder = $solution.Projects | where { $_.Name -eq "Solution Items"}
+	if ($solutionFolder -eq $null) {
+		$solutionFolder = $solution.AddSolutionFolder("Solution Items")
+	}
+	$projItemProcfile = $solutionFolder.ProjectItems | where { $_.Name -eq "Procfile" }
+	if ($projItemProcfile -eq $null) {
+		$solutionItems = Get-Interface $solutionFolder.ProjectItems ([EnvDTE.ProjectItems])
+		$solutionItems.AddFromFile($destinationProcfilePath)
+	}
+}
+
+# Install custom Web server provider.
 $serverProvider = $dte.GetObject("CustomWebServerProvider")
 if ($serverProvider -eq $null)
 {
@@ -9,8 +31,6 @@ if ($servers -eq $null)
 {
     return; # Not a WAP project
 }
-$solutionDir = [System.IO.Path]::Combine($installPath, "..\..\")
-$solutionDir = [System.IO.Path]::GetFullPath($solutionDir)
 $relativeToolsDir = $toolsPath.SubString($solutionDir.Length)
 $exeDir = '{solutiondir}\' + $relativeToolsDir + '\OwinHostForHeroku.exe'
 $server = $servers.GetWebServer('OwinHost for Heroku')

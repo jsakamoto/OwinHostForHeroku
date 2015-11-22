@@ -63,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="NuGet Package Source\content\Procfile" />
+    <None Include="NuGet Package Source\tools\Procfile" />
     <None Include="NuGet Package Source\tools\install.ps1" />
     <None Include="OwinHostForHeroku.nuspec">
       <SubType>Designer</SubType>
