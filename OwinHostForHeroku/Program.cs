@@ -38,6 +38,11 @@ namespace OwinHostForHeroku
             }
             Directory.SetCurrentDirectory(workDir);
 
+            // Detect web.config and get exact full path for case sensitive file system.
+            var webConfigPath = Directory.GetFiles(workDir, "*.config")
+                .Where(path => Path.GetFileName(path).ToLower() == "web.config")
+                .FirstOrDefault() ?? Path.Combine(workDir, "Web.config");
+
             // Create new AppDomain based on working directory.
             var info = new AppDomainSetup
             {
@@ -45,7 +50,7 @@ namespace OwinHostForHeroku
                 PrivateBinPath = "bin",
                 PrivateBinPathProbe = "*",
                 LoaderOptimization = LoaderOptimization.MultiDomainHost,
-                ConfigurationFile = Path.Combine(workDir, "web.config")
+                ConfigurationFile = webConfigPath
             };
             var domain = AppDomain.CreateDomain("OWIN", null, info);
 
