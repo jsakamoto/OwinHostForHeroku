@@ -1,0 +1,8 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  
+  <Target Name="CopyOwinHostForHerokuToBin" BeforeTargets="AfterBuild">
+    <PropertyGroup>
+      <OwinHostForHerokuPath>$(MSBuildThisFileDirectory)..\tools\OwinHostForHeroku.exe</OwinHostForHerokuPath>
+    </PropertyGroup>
+    <Copy SourceFiles="$(OwinHostForHerokuPath)" DestinationFolder="$(ProjectDir)$(OutputPath)" SkipUnchangedFiles="true"></Copy>
+  </Target>
+</Project>

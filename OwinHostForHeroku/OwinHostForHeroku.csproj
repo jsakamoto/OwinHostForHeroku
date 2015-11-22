@@ -63,12 +63,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="install.ps1" />
+    <None Include="NuGet Package Source\tools\install.ps1" />
     <None Include="OwinHostForHeroku.nuspec">
       <SubType>Designer</SubType>
     </None>
+    <None Include="NuGet Package Source\build\OwinHostForHeroku.targets" />
     <None Include="packages.config" />
-    <None Include="uninstall.ps1" />
+    <None Include="NuGet Package Source\tools\uninstall.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -17,7 +17,7 @@
     </description>
     <releaseNotes>
       <![CDATA[
-      v.1.0.0 - First release
+      v.1.0.1 - First release
       ]]>
     </releaseNotes>
     <copyright>Copyright 2015 J.Sakamoto, MIT License</copyright>
@@ -28,7 +28,8 @@
     <file src="bin\Release\Microsoft.Owin.Host.HttpListener.dll" target="tools"/>
     <file src="bin\Release\Microsoft.Owin.Hosting.dll" target="tools"/>
     <file src="bin\Release\Owin.dll" target="tools"/>
-    <file src="Install.ps1" target="tools"/>
-    <file src="Uninstall.ps1" target="tools"/>
+    <file src="NuGet Package Source\tools\Install.ps1" target="tools"/>
+    <file src="NuGet Package Source\tools\Uninstall.ps1" target="tools"/>
+    <file src="NuGet Package Source\build\OwinHostForHeroku.targets" target="build"/>
   </files>
 </package>
