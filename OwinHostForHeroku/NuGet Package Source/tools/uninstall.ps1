@@ -16,6 +16,6 @@ if ($server -ne $null)
     $prompt = [Microsoft.VisualBasic.Interaction]::MsgBox("Remove custom server settings?",'YesNo,Question', "Uninstalling Custom Server")
     if ($prompt -eq [Microsoft.VisualBasic.MsgBoxResult]::Yes)
     {
-        $servers.RemoveWebServer('OwinHost fro Heroku');
+        $servers.RemoveWebServer('OwinHost for Heroku');
     }
 }
