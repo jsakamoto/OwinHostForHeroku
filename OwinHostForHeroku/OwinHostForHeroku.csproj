@@ -68,9 +68,11 @@
     <None Include="OwinHostForHeroku.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="NuGet Package Source\build\OwinHostForHeroku.targets" />
     <None Include="packages.config" />
     <None Include="NuGet Package Source\tools\uninstall.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NuGet Package Source\content\README-OwinHostForHeroku.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
