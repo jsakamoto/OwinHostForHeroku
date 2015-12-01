@@ -33,18 +33,28 @@ Heroku に配置する ASP.NET Web アプリケーションは、いつもと同
 - [Git for Windows](https://git-for-windows.github.io/) was installed and it is executable from command prompt.
 - [Heroku toolbelt](https://toolbelt.heroku.com/) was installed and it is executable from command prompt.
 
+Of course, you should have been configured `git` and `heroku` command can use (ex. signed in your heroku account).
+
 - Windows OS 上
 - [Visual Studio 2015](https://www.visualstudio.com/products/vs-2015-product-editions) がインストールされていること。([Community Edition](https://www.visualstudio.com/products/visual-studio-community-vs) 可)
 - [Git for Windows](https://git-for-windows.github.io/) がインストールされ、コマンドプロンプトから実行できること。
 - [Heroku toolbelt](https://toolbelt.heroku.com/) がインストールされ、コマンドプロンプトから実行できること。
 
+もちろん、`git` および `heroku` コマンドは使用可能なように構成しておく必要があります (例: heroku アカウントへのサインインなど)。
+
 ### Step 1. Develop your ASP.NET Web application with C# based on OWIN / C# で OWIN に基づく ASP.NET Web アプリケーションを開発する
 
-**1-1)** Launch Visual Studio 2015, and create new ASP.NET project via .NET Framework 4.5 x ASP.NET "Empty" project template.
+**1-1)**  
+Launch Visual Studio 2015, and create new ASP.NET project via .NET Framework 4.5 x ASP.NET "Empty" project template.
 
 Visual Studio 2015 を起動し、.NET Framework 4.5 の ASP.NET "空のサイト" プロジェクトテンプレートから、新規 ASP.NET プロジェクトを作成します。
 
-**1-2)** Remove "Roslyn" compiler from the project by enter following commands in Package Manager Console at Visual Studio.
+![fig-01](./.resources/fig-01.png)
+
+![fig-02](./.resources/fig-02.png)
+
+**1-2)**  
+Remove "Roslyn" compiler from the project by enter following commands in Package Manager Console at Visual Studio.
 
 Visual Studio のパッケージマネージャコンソールから以下のコマンドを入力して、"Roslyn" コンパイラをプロジェクトから削除します。
 
@@ -53,20 +63,22 @@ PM> Uninstall-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform
 PM> Uninstall-Package Microsoft.Net.Compilers
 ```
 
-**1-3)** [Optional but Recomended] Remove references of following assemblies for avoid build warning of build system on Heroku.
+**1-3)**  
+[Optional but Recomended] Remove references of following assemblies for avoid build warning of build system on Heroku.
 
 [必須ではないが推奨] Heroku 上のビルドシステムにおけるビルド時警告を避けるため、以下のアセンブリを参照設定から削除します。
 
+- System.Web
+- System.Web.ApplicationServices
 - System.Web.DynamicData
 - System.Web.Entity
-- System.Web.ApplicationServices
 - System.Web.Extensions
-- System.Web
 - System.Web.Services
 - System.Web.Abstractions
 - System.Web.Routing
 
-**1-4)** Install "Microsoft.Owin.Host.SystemWeb" NuGet package into the project by enter following commands in Package Manager Console at Visual Studio.
+**1-4)**  
+Install "Microsoft.Owin.Host.SystemWeb" NuGet package into the project by enter following commands in Package Manager Console at Visual Studio.
 
 Visual Studio 上のパッケージマネージャコンソールから以下のコマンドを入力して、"Microsoft.Owin.Host.SystemWeb" NuGet パッケージをプロジェクトに追加します。
 
@@ -74,11 +86,15 @@ Visual Studio 上のパッケージマネージャコンソールから以下の
 PM> Install-Package Microsoft.Owin.Host.SystemWeb
 ```
 
-**1-5)** Add OWIN start up class like bellow to the project.
+**1-5)**  
+Add OWIN start up class like bellow to the project.
 
 以下のような OWIN start up クラスをプロジェクトに追加します。
 
+![fig-03](./.resources/fig-03.png)
+
 ```csharp
+// Startup.cs
 using System;
 using System.Threading.Tasks;
 using Microsoft.Owin;
@@ -129,7 +145,8 @@ Open command prompt, and do like this:
 > echo obj/ >> .gitignore
 > echo packages/ >> .gitignore
 > echo .vs/ >> .gitignore
-> git commit -a -m "1st commit."
+> git add *
+> git commit -m "1st commit."
 ```
 
 ### Step 4. Create Web application site on Heroku / Heroku 上に Web アプリケーションサイトを作る
@@ -176,6 +193,15 @@ Open command prompt, and do like this:
 After this, enter `> heroku open` command, then Web browser was launched and open the Web site, and you can see "Hello World" in browser.
 
 このあと、`> heroku open` コマンドを入力すると、ブラウザが立ち上がって Web サイトが開き、"Hello World" が表示されます。
+
+### Example / 例
+
+**Chomad Problem Web API Server / ちょまど問題 Web API サーバー**  
+[https://github.com/jsakamoto/chomado-problem-server](https://github.com/jsakamoto/chomado-problem-server)
+
+This Web app can deploy by "git push" to Heroku, Azure Web Apps, and AppHarbor.
+
+この Web アプリは、Heroku、Azure Web Apps、そして AppHarbor に "git push" で配置できます。
 
 
 ----
