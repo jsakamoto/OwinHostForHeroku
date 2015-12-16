@@ -130,8 +130,6 @@ Visual Studio 上のパッケージマネージャコンソールから以下の
 PM> Install-Package OwinHostForHeroku
 ```
 
-_Notice: OwinHostForHeroku is beta version at this time._
-
 ### Step 3. Create git local repository and commit the project / git ローカルリポジトリを作成しプロジェクトをコミットする
 
 Open command prompt, and do like this:
