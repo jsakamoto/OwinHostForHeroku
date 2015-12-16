@@ -1,5 +1,7 @@
 # Owin Host for Heroku
 
+[![NuGet Package](https://img.shields.io/nuget/v/OwinHostForHeroku.svg)](https://www.nuget.org/packages/OwinHostForHeroku/)
+
 ## What's this? / これは何?
 
 "Owin Host for Heroku" is one of the OWIN Self Hosting Console application, but it was optimized for running your ASP.NET Web application on ["Heroku"](https://heroku.com).
@@ -125,7 +127,7 @@ Install "OwinHostForHeroku" NuGet package into the project by enter following co
 Visual Studio 上のパッケージマネージャコンソールから以下のコマンドを入力して、"OwinHostForHeroku" NuGet パッケージをプロジェクトに追加します。
 
 ```
-PM> Install-Package OwinHostForHeroku -pre
+PM> Install-Package OwinHostForHeroku
 ```
 
 _Notice: OwinHostForHeroku is beta version at this time._
